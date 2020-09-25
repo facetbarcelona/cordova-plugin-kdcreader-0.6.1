@@ -1,0 +1,22 @@
+{
+  "name": "cordova-plugin-kdcreader",
+  "version": "0.6.1",
+  "description": "KDCReader Cordova Plugin",
+  "cordova": {
+    "id": "cordova-plugin-kdcreader",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "koamtac",
+    "kdc",
+    "kdcreader"
+  ],
+  "author": "Koamtac",
+  "license": ""
+}

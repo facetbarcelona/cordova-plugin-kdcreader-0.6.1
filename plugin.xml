@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-kdcreader"
+    version="0.6.1"
+    xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <name>KDCReader</name>
+    <description>KDCReader Cordova Plugin</description>
+    
+    <js-module name="KDCConstants" src="www/kdcconstants.js">
+        <clobbers target="KDCConstants" />
+    </js-module>
+
+    <js-module name="KDCReader" src="www/kdcreader.js">
+        <clobbers target="KDCReader" />
+    </js-module>
+    
+    <!-- android -->
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="KReader">
+                <param name="android-package" value="koamtac.kdc.sdk.plugin.KReader" />
+            </feature>
+        </config-file>
+
+        <config-file parent="/*" target="AndroidManifest.xml">
+            
+            <!-- Bluetooth permission -->
+            <uses-permission android:name="android.permission.BLUETOOTH" />
+            <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
+            <!-- Scan BLE peripheral permission -->
+            <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+            <!-- BLE featrue -->
+            <uses-feature android:name="android.hardware.bluetooth_le" android:required="false"/>
+
+            <!-- OTG(USB) feature -->
+            <uses-feature android:name="android.hardware.usb.host" android:required="false"/>
+        </config-file>
+
+        <source-file src="src/android/KReader.java" target-dir="src/koamtac/kdc/sdk/plugin" />
+        <source-file src="src/android/KConverter.java" target-dir="src/koamtac/kdc/sdk/plugin" />
+        <source-file src="src/android/KConstants.java" target-dir="src/koamtac/kdc/sdk/plugin" />
+
+        <source-file src="src/android/delegate/KDelegate.java" target-dir="src/koamtac/kdc/sdk/plugin/delegate" />
+        
+        <source-file src="src/android/delegate/KReaderDelegate.java" target-dir="src/koamtac/kdc/sdk/plugin/delegate" />
+
+        <source-file src="src/android/delegate/KCommonDelegate.java" target-dir="src/koamtac/kdc/sdk/plugin/delegate" />
+
+        <source-file src="src/android/delegate/KBluetoothDelegate.java" target-dir="src/koamtac/kdc/sdk/plugin/delegate" />
+        
+        <source-file src="src/android/delegate/KDataProcessDelegate.java" target-dir="src/koamtac/kdc/sdk/plugin/delegate" />
+
+        <source-file src="src/android/delegate/KSystemDelegate.java" target-dir="src/koamtac/kdc/sdk/plugin/delegate" />
+
+        <source-file src="src/android/delegate/KDisplayDelegate.java" target-dir="src/koamtac/kdc/sdk/plugin/delegate" />    
+
+        <source-file src="src/android/delegate/KKeypadDelegate.java" target-dir="src/koamtac/kdc/sdk/plugin/delegate" />
+
+        <source-file src="src/android/delegate/KVibratorDelegate.java" target-dir="src/koamtac/kdc/sdk/plugin/delegate" />
+
+        <source-file src="src/android/delegate/KHidDelegate.java" target-dir="src/koamtac/kdc/sdk/plugin/delegate" />
+
+        <source-file src="src/android/delegate/KWiFiDelegate.java" target-dir="src/koamtac/kdc/sdk/plugin/delegate" />
+
+        <source-file src="src/android/delegate/KNfcDelegate.java" target-dir="src/koamtac/kdc/sdk/plugin/delegate" />                
+
+        <source-file src="src/android/delegate/KMsrDelegate.java" target-dir="src/koamtac/kdc/sdk/plugin/delegate" />
+
+        <source-file src="src/android/delegate/KUhfDelegate.java" target-dir="src/koamtac/kdc/sdk/plugin/delegate" />
+
+        <source-file src="src/android/delegate/KPosDelegate.java" target-dir="src/koamtac/kdc/sdk/plugin/delegate" />
+        
+        <lib-file src="src/android/lib/kdcreader.jar" />
+    </platform>
+    
+    <!-- ios -->
+    <platform name="ios">
+        <config-file parent="/*" target="config.xml">
+            <feature name="KReader">
+                <param name="ios-package" value="KReader" />
+            </feature>
+        </config-file>
+        
+        <config-file parent="UISupportedExternalAccessoryProtocols" target="*-Info.plist">
+            <array>
+                <string>com.koamtac.kdc</string>
+            </array>
+        </config-file>
+
+        <config-file parent="NSBluetoothAlwaysUsageDescription" target="*-Info.plist">
+            <string>Need to communicate with KDC Device via Bluetooth</string>
+        </config-file>
+
+        <header-file src="src/ios/KConstants.h" />
+        <source-file src="src/ios/KConstants.m" />
+
+        <header-file src="src/ios/KReader.h" />
+        <source-file src="src/ios/KReader.m" />
+
+        <header-file src="src/ios/KConverter.h" />
+        <source-file src="src/ios/KConverter.m" />
+
+        <header-file src="src/ios/delegate/KDelegate.h" target-dir="delegate" />
+        
+        <header-file src="src/ios/delegate/KCommonDelegate.h" target-dir="delegate" />
+        <source-file src="src/ios/delegate/KCommonDelegate.m" target-dir="delegate" />
+
+        <header-file src="src/ios/delegate/KBluetoothDelegate.h" target-dir="delegate" />
+        <source-file src="src/ios/delegate/KBluetoothDelegate.m" target-dir="delegate" />
+        
+        <header-file src="src/ios/delegate/KDataProcessDelegate.h" target-dir="delegate" />
+        <source-file src="src/ios/delegate/KDataProcessDelegate.m" target-dir="delegate" />
+
+        <header-file src="src/ios/delegate/KSystemDelegate.h" target-dir="delegate" />
+        <source-file src="src/ios/delegate/KSystemDelegate.m" target-dir="delegate" />
+
+        <header-file src="src/ios/delegate/KDisplayDelegate.h" target-dir="delegate" />
+        <source-file src="src/ios/delegate/KDisplayDelegate.m" target-dir="delegate" />
+
+        <header-file src="src/ios/delegate/KKeypadDelegate.h" target-dir="delegate" />
+        <source-file src="src/ios/delegate/KKeypadDelegate.m" target-dir="delegate" />
+        
+        <header-file src="src/ios/delegate/KVibratorDelegate.h" target-dir="delegate" />
+        <source-file src="src/ios/delegate/KVibratorDelegate.m" target-dir="delegate" />
+
+        <header-file src="src/ios/delegate/KHidDelegate.h" target-dir="delegate" />
+        <source-file src="src/ios/delegate/KHidDelegate.m" target-dir="delegate" />
+
+        <header-file src="src/ios/delegate/KWiFiDelegate.h" target-dir="delegate" />
+        <source-file src="src/ios/delegate/KWiFiDelegate.m" target-dir="delegate" />
+
+        <header-file src="src/ios/delegate/KNfcDelegate.h" target-dir="delegate" />
+        <source-file src="src/ios/delegate/KNfcDelegate.m" target-dir="delegate" />
+
+        <header-file src="src/ios/delegate/KMsrDelegate.h" target-dir="delegate" />
+        <source-file src="src/ios/delegate/KMsrDelegate.m" target-dir="delegate" />
+
+        <header-file src="src/ios/delegate/KUhfDelegate.h" target-dir="delegate" />
+        <source-file src="src/ios/delegate/KUhfDelegate.m" target-dir="delegate" />
+
+        <header-file src="src/ios/delegate/KPosDelegate.h" target-dir="delegate" />
+        <source-file src="src/ios/delegate/KPosDelegate.m" target-dir="delegate" />
+
+        <header-file src="src/ios/Library/KDCConstants.h" target-dir="lib/header" />
+        <header-file src="src/ios/Library/KDCData.h"  target-dir="lib/header" />
+        <header-file src="src/ios/Library/KDCDevice.h"  target-dir="lib/header" />
+        <header-file src="src/ios/Library/KDCReader.h"  target-dir="lib/header" />
+        <header-file src="src/ios/Library/KDCResponse.h"  target-dir="lib/header" />
+
+        <header-file src="src/ios/Library/KPOSConstants.h"  target-dir="lib/header" />
+        <header-file src="src/ios/Library/KPOSData.h"  target-dir="lib/header" />
+        <header-file src="src/ios/Library/KPOSEMVApplication.h"  target-dir="lib/header" />
+        <header-file src="src/ios/Library/KPOSEMVTagList.h"  target-dir="lib/header" />
+        <header-file src="src/ios/Library/KPOSResult.h"  target-dir="lib/header" />
+
+        <header-file src="src/ios/Library/UHFResult.h"  target-dir="lib/header" />
+
+<!--
+        <source-file src="src/ios/Library/libKDCReader.a" framework="true" />
+        <framework src="src/ios/Library/libKDCReader.a" custom="true" />
+-->
+
+        <source-file src="src/ios/Library/Release-iphoneos/libKDCReader.a" framework="true" target-dir="lib/iphoneos" />
+<!--        
+        <source-file src="src/ios/Library/Release-iphonesimulator/libKDCReader.a" framework="true" target-dir="lib/iphonesimulator" />
+        <source-file src="src/ios/Library/libKDCReader.a" framework="true" target-dir="lib/iphone" />
+-->
+    </platform>
+
+</plugin>
